@@ -1,0 +1,7 @@
+Django>=4.0,<5.0
+psycopg2-binary>=2.9
+djangorestframework>=3.14
+djangorestframework-simplejwt>=5.2
+django-environ>=0.9.0
+pytz>=2023.3  # Required by Django for timezone support
+cryptography>=41.0  # For additional security features
