@@ -23,7 +23,7 @@ class LogoutView(generics.GenericAPIView):
     """
     View to handle user logout by blacklisting the refresh token.
     """
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         try:

@@ -5,3 +5,4 @@ djangorestframework-simplejwt>=5.2
 django-environ>=0.9.0
 pytz>=2023.3  # Required by Django for timezone support
 cryptography>=41.0  # For additional security features
+django-tenant-schemas
