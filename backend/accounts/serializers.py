@@ -11,6 +11,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
+        print(f"Generated token: {token}")
 
         # Add custom claims
         token['email'] = user.email
@@ -32,11 +33,12 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         return data
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'first_name', 'last_name',
-                  'password', 'role', 'company', 'is_active']
+                  'password', 'role', 'tenant', 'is_active']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):

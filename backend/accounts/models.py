@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from tenants.models import Tenant
 
 ROLE_CHOICES = (
     ('super_admin', 'Super Admin'),
@@ -8,17 +9,6 @@ ROLE_CHOICES = (
     ('team_member', 'Team Member'),
     ('client', 'Client'),
 )
-
-
-class Company(models.Model):
-    """
-    Represents a company within the system.
-    """
-    name = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
 
 
 class UserManager(BaseUserManager):
@@ -47,8 +37,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     role = models.CharField(
         max_length=20, choices=ROLE_CHOICES, default='client')
-    company = models.ForeignKey(
-        Company, on_delete=models.CASCADE, null=True, blank=True, related_name='users')
+    tenant = models.ForeignKey(
+        Tenant, on_delete=models.CASCADE, null=True, blank=True, related_name='users')
 
     objects = UserManager()
 
