@@ -48,7 +48,7 @@ TENANT_APPS = (
 )
 
 SHARED_APPS = (
-    'django_tenants',  # Required by django-tenants
+    'django_tenants',  
     'django.contrib.contenttypes',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -97,13 +97,13 @@ AUTH_USER_MODEL = 'accounts.User'
 
 DATABASES = {
     'default': {
-        # Use the backend provided by django-tenants
+        
         'ENGINE': 'django_tenants.postgresql_backend',
-        'NAME': 'pmp',  # Your database name
-        'USER': 'postgres',  # Your database user
-        'PASSWORD': '1234',  # Your database password
-        'HOST': 'localhost',  # Your database host
-        'PORT': '5432',  # Your database port
+        'NAME': 'pmp',  
+        'USER': 'postgres',  
+        'PASSWORD': '1234',  
+        'HOST': 'localhost',  
+        'PORT': '5432', 
         'OPTIONS': {
             # Ensure default search path is set to public
             'options': '-c search_path=public',
@@ -122,8 +122,8 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,  # No need for rotation if not using blacklisting
-    'BLACKLIST_AFTER_ROTATION': False,  # Ensure this is set to False
+    'ROTATE_REFRESH_TOKENS': False,  
+    'BLACKLIST_AFTER_ROTATION': False,  
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
