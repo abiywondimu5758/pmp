@@ -12,12 +12,11 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'django_tenants',
     'tenants',
     'accounts',
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
+    'django_tenants',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,7 +29,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django_tenants.middleware.TenantMiddleware',  # middleware
+    'django_tenants.middleware.TenantMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,8 +57,8 @@ SHARED_APPS = (
     'django.contrib.staticfiles',
     'accounts',  # Shared apps like user management
     'tenants',   # Your app for tenant management
-    # Add any other shared apps here
 )
+
 
 TENANT_MODEL = "tenants.Tenant"  # The model to use for tenants
 TENANT_DOMAIN_MODEL = "tenants.Domain"  # The model to use for domains
@@ -106,7 +105,8 @@ DATABASES = {
         'HOST': 'localhost',  # Your database host
         'PORT': '5432',  # Your database port
         'OPTIONS': {
-            'options': '-c search_path=public'  # Ensure default search path is set to public
+            # Ensure default search path is set to public
+            'options': '-c search_path=public',
         },
     }
 }
@@ -122,12 +122,9 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,  # Enables blacklisting after token rotation
+    'ROTATE_REFRESH_TOKENS': False,  # No need for rotation if not using blacklisting
+    'BLACKLIST_AFTER_ROTATION': False,  # Ensure this is set to False
     'AUTH_HEADER_TYPES': ('Bearer',),
-    'UPDATE_LAST_LOGIN': True,
-    'TOKEN_USER_CLASS': 'django.contrib.auth.get_user_model',
-    'BLACKLIST_TOKEN_CLASSES': ('access', 'refresh'),
 }
 
 # Password validation

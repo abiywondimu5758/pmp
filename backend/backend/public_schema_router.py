@@ -17,7 +17,7 @@ class PublicSchemaRouter:
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
-        # Ensure that token_blacklist app migrates only on the public schema
         if app_label == 'token_blacklist':
+            # Ensures migration happens in the 'default' database, which uses the public schema
             return db == 'default'
         return None

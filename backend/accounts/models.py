@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from tenants.models import Tenant
+from tenants.models import Tenant  # Import Tenant model
 
 ROLE_CHOICES = (
     ('super_admin', 'Super Admin'),

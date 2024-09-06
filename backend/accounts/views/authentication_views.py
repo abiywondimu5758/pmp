@@ -22,19 +22,12 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 class LogoutView(generics.GenericAPIView):
     """
-    View to handle user logout by blacklisting the refresh token.
+    View to handle user logout without blacklisting the refresh token.
     """
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        try:
-            refresh_token = request.data["refresh"]
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-
-            return Response({"message": "Successfully logged out."}, status=status.HTTP_205_RESET_CONTENT)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": "Successfully logged out."}, status=status.HTTP_205_RESET_CONTENT)
 
 
 class RegisterView(generics.CreateAPIView):
