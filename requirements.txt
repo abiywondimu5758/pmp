@@ -1,0 +1,9 @@
+Django
+psycopg2-binary
+djangorestframework
+djangorestframework-simplejwt
+django-environ
+pytz  # Required by Django for timezone support
+cryptography  # For additional security features
+# django-tenant-schemas
+django-tenants
